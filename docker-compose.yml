@@ -1,0 +1,17 @@
+services:
+  script-runner:
+    build:
+      context: ./script-runner
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data  # bind mount vers ton disque local
+    depends_on:
+      - sqlite-db
+
+  sqlite-db:
+    image: nouchka/sqlite3:latest
+    container_name: sqlite-db
+    volumes:
+      - ./data:/data  # même dossier local monté ici aussi
+    stdin_open: true
+    tty: true
