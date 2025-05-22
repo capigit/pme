@@ -29,3 +29,5 @@ git clone https://github.com/capigit/pme.git
 cd pme
 
 docker-compose up --build
+
+docker compose up --build
