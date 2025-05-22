@@ -1,10 +1,10 @@
-# 🧪 Projet Data Engineer — Analyse des Ventes d'une PME
+# Projet Data Engineer — Analyse des Ventes d'une PME
 
 Il s'agit d'un pipeline complet de traitement de données conteneurisé avec Docker : extraction, transformation, chargement (ETL), analyse, et stockage des résultats.
 
 ---
 
-## 📦 Fonctionnalités
+## Fonctionnalités
 
 - Architecture à deux services (exécution des scripts Python + base SQLite)
 - Traitement automatisé de fichiers CSV (ventes, produits, magasins)
@@ -15,14 +15,14 @@ Il s'agit d'un pipeline complet de traitement de données conteneurisé avec Doc
 
 ---
 
-## 🚀 Lancer le projet sur n'importe quelle machine
+## Lancer le projet sur n'importe quelle machine
 
-### ✅ Pré-requis
+### Pré-requis
 
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/) (inclus dans Docker Desktop)
 
-### 🧾 Cloner le dépôt
+### Cloner le dépôt
 
 ```bash
 git clone https://github.com/capigit/pme.git
@@ -45,13 +45,13 @@ docker-compose run script-runner python main.py report
 
 ---
 
-## 🔍 Vérification des résultats (post `docker-compose up --build`)
+## Vérification des résultats (post `docker-compose up --build`)
 
 Une fois l'exécution terminée, vous pouvez valider les résultats produits par les analyses de deux manières :
 
 ---
 
-### 📘 Option 1 — En ligne de commande SQLite
+### Option 1 — En ligne de commande SQLite
 
 1. Ouvrir une session dans le conteneur de base :
 
@@ -66,7 +66,7 @@ Les requêtes sont disponibles dans `script-runner/analyses.sql`
 docker-compose run script-runner python run_sql_analyses.py
 ```
 
-### 📝 Option 3 — Génération automatique d’un fichier de rapport
+### Option 3 — Génération automatique d’un fichier de rapport
 
 Vous pouvez lancer le script `generate_report.py` pour créer deux fichiers :
 
