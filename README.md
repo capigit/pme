@@ -29,5 +29,16 @@ git clone https://github.com/capigit/pme.git
 cd pme
 
 docker-compose up --build
-
 docker compose up --build
+```
+Cela exécute automatiquement le script main.py, qui enchaîne :
+- init_db.py → création de la base et des tables
+- import_data.py → chargement des fichiers CSV
+- analyze.py → génération des analyses SQL et stockage dans la base
+
+### Rejouer une étape spécifique
+```bash
+docker-compose run script-runner python main.py import
+docker-compose run script-runner python main.py analyze
+docker-compose run script-runner python main.py report
+```
