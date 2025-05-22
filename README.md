@@ -42,3 +42,36 @@ docker-compose run script-runner python main.py import
 docker-compose run script-runner python main.py analyze
 docker-compose run script-runner python main.py report
 ```
+
+---
+
+## 🔍 Vérification des résultats (post `docker-compose up --build`)
+
+Une fois l'exécution terminée, vous pouvez valider les résultats produits par les analyses de deux manières :
+
+---
+
+### 📘 Option 1 — En ligne de commande SQLite
+
+1. Ouvrir une session dans le conteneur de base :
+
+```bash
+docker exec -it sqlite-db sh
+sqlite3 /data/sales.db
+```
+Les requêtes sont disponibles dans `script-runner/analyses.sql`
+
+### Option 2 — Affichage automatique avec script Python
+```bash
+docker-compose run script-runner python run_sql_analyses.py
+```
+
+### 📝 Option 3 — Génération automatique d’un fichier de rapport
+
+Vous pouvez lancer le script `generate_report.py` pour créer deux fichiers :
+
+- `/data/resultats.json` → version brute structurée
+- `/data/resultats.txt` → version lisible humainement
+
+```bash
+docker-compose run script-runner python generate_report.py

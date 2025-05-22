@@ -5,8 +5,8 @@ scripts = {
     "init": "init_db.py",
     "import": "import_data.py",
     "analyze": "analyze.py",
-    "report": "run_sql_analyses.py",
-    "all": ["init_db.py", "import_data.py", "analyze.py"]
+    "report": "generate_report.py",  # ✅ nouveau
+    "all": ["init_db.py", "import_data.py", "analyze.py", "generate_report.py"]
 }
 
 def run_script(script_name):
