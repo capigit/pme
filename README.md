@@ -1,4 +1,4 @@
-# Projet Data Engineer — Analyse des Ventes d'une PME
+# Projet Data Engineer - Analyse des Ventes d'une PME
 
 Il s'agit d'un pipeline complet de traitement de données conteneurisé avec Docker : extraction, transformation, chargement (ETL), analyse, et stockage des résultats.
 
@@ -28,7 +28,6 @@ Il s'agit d'un pipeline complet de traitement de données conteneurisé avec Doc
 git clone https://github.com/capigit/pme.git
 cd pme
 
-docker-compose up --build
 docker compose up --build
 ```
 Cela exécute automatiquement le script main.py, qui enchaîne :
@@ -38,14 +37,14 @@ Cela exécute automatiquement le script main.py, qui enchaîne :
 
 ### Rejouer une étape spécifique
 ```bash
-docker-compose run script-runner python main.py import
-docker-compose run script-runner python main.py analyze
-docker-compose run script-runner python main.py report
+docker compose run script-runner python main.py import
+docker compose run script-runner python main.py analyze
+docker compose run script-runner python main.py report
 ```
 
 ---
 
-## Vérification des résultats (post `docker-compose up --build`)
+## Vérification des résultats (post `docker compose up --build`)
 
 Une fois l'exécution terminée, vous pouvez valider les résultats produits par les analyses de deux manières :
 
@@ -74,4 +73,4 @@ Vous pouvez lancer le script `generate_report.py` pour créer deux fichiers :
 - `/data/resultats.txt` → version lisible humainement
 
 ```bash
-docker-compose run script-runner python generate_report.py
+docker compose run script-runner python generate_report.py
