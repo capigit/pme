@@ -27,3 +27,6 @@ Il s'agit d'un pipeline complet de traitement de données conteneurisé avec Doc
 ```bash
 git clone https://github.com/capigit/pme.git
 cd pme
+
+### Construire et lancer le pipeline complet
+docker-compose up --build
