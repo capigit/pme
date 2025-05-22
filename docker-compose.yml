@@ -4,7 +4,7 @@ services:
       context: ./script-runner
       dockerfile: Dockerfile
     volumes:
-      - ./data:/data  # bind mount vers ton disque local
+      - ./data:/data  # bind mount vers mon disque local
     depends_on:
       - sqlite-db
 

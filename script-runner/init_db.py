@@ -1,11 +1,9 @@
-# init_db.py
-
 import sqlite3
 from pathlib import Path
 
 DB_PATH = "/data/sales.db"
 
-# Assure que le dossier existe
+# Je m'assure que le dossier existe
 Path("/data").mkdir(parents=True, exist_ok=True)
 
 # Connexion à la base de données
@@ -46,4 +44,4 @@ CREATE TABLE IF NOT EXISTS analyses (
 conn.commit()
 conn.close()
 
-print("✅ Base de données initialisée avec succès.")
+print("Base de données initialisée avec succès.")

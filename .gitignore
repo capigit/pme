@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+
+# SQLite database
+data/*.db
+
+# Docker
+*.log
+*.pid
+
+# VSCode / IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
