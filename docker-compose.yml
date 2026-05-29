@@ -10,7 +10,6 @@ services:
 
   sqlite-db:
     image: nouchka/sqlite3:latest
-    container_name: sqlite-db
     volumes:
       - ./data:/data  # même dossier local monté ici aussi
     stdin_open: true
