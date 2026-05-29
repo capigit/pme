@@ -1,7 +1,5 @@
 import sqlite3
-
-DB_PATH = "/data/sales.db"
-SQL_FILE = "analyses.sql"
+from config import DB_PATH, SQL_FILE
 
 def run_queries():
     with open(SQL_FILE, "r") as f:

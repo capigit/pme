@@ -1,0 +1,5 @@
+DB_PATH     = "/data/sales.db"
+OUTPUT_JSON = "/data/resultats.json"
+OUTPUT_TXT  = "/data/resultats.txt"
+OUTPUT_JS   = "/data/data.js"
+SQL_FILE    = "sql/analyses.sql"

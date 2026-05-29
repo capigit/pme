@@ -1,7 +1,6 @@
 import sqlite3
 from pathlib import Path
-
-DB_PATH = "/data/sales.db"
+from config import DB_PATH
 
 # Je m'assure que le dossier existe
 Path("/data").mkdir(parents=True, exist_ok=True)

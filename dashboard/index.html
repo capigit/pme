@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rapport d'analyse des ventes</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../data/data.js"></script>
+  <script src="js/utils.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <main class="dashboard">
+    <section class="header">
+      <div>
+        <h1>Rapport d'analyse des ventes</h1>
+        <p>Synthèse des performances par produit et par ville</p>
+      </div>
+      <div class="total">
+        <span>CHIFFRE D'AFFAIRES TOTAL</span>
+        <strong id="ca-total"></strong>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Chiffre d'affaires par produit</h2>
+        <div class="chart-box">
+          <canvas id="productChart"></canvas>
+        </div>
+        <div class="ranking" id="ranking"></div>
+      </div>
+
+      <div class="card">
+        <h2>Chiffre d'affaires par ville</h2>
+        <div class="chart-box">
+          <canvas id="cityChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="kpis">
+      <div class="kpi">
+        <small>Produit le plus performant</small>
+        <strong id="kpi-top-produit"></strong>
+      </div>
+      <div class="kpi">
+        <small>Ville la plus performante</small>
+        <strong id="kpi-top-ville"></strong>
+      </div>
+      <div class="kpi">
+        <small>Écart ville max/min</small>
+        <strong id="kpi-ecart"></strong>
+      </div>
+      <div class="kpi">
+        <small>Produits analysés</small>
+        <strong id="kpi-nb-produits"></strong>
+      </div>
+      <div class="kpi">
+        <small>Villes analysées</small>
+        <strong id="kpi-nb-villes"></strong>
+      </div>
+    </section>
+
+    <footer>Toutes les valeurs sont exprimées en euros (€)</footer>
+  </main>
+
+  <script src="js/kpis.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

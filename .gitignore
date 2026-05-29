@@ -2,8 +2,8 @@
 __pycache__/
 *.pyc
 
-# SQLite database
-data/*.db
+# Generated outputs (DB + rapports)
+/data/
 
 # Docker
 *.log
