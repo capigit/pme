@@ -14,29 +14,111 @@
 
   <main class="dashboard">
     <section class="header">
-      <div>
+      <div class="header-copy">
         <h1>Rapport d'analyse des ventes</h1>
         <p>Synthèse des performances par produit et par ville</p>
       </div>
-      <div class="total">
-        <span>CHIFFRE D'AFFAIRES TOTAL</span>
-        <strong id="ca-total"></strong>
+      <div class="header-actions">
+        <div class="data-controls" aria-label="Gestion des données">
+          <input id="data-file" class="file-input" type="file" accept=".json,.js,application/json" />
+          <button type="button" id="load-data" class="control-button">Charger</button>
+          <button type="button" id="reset-data" class="control-button secondary">Défaut</button>
+          <span id="data-status" class="data-status" role="status" aria-live="polite"></span>
+        </div>
+        <div class="total">
+          <span>CHIFFRE D'AFFAIRES TOTAL</span>
+          <strong id="ca-total"></strong>
+        </div>
       </div>
+    </section>
+
+    <section class="data-guide" aria-labelledby="data-guide-title">
+      <div class="data-guide-copy">
+        <h2 id="data-guide-title">Données traitées</h2>
+        <p>Le tableau analyse du chiffre d'affaires en euros, réparti par produit et par ville.</p>
+      </div>
+      <details class="data-format">
+        <summary>Format du fichier attendu</summary>
+        <div class="data-format-content">
+          <div class="format-rules">
+            <strong>Champs obligatoires</strong>
+            <ul>
+              <li><code>chiffre_affaires_total</code> : montant total.</li>
+              <li><code>par_produit</code> : montants par produit.</li>
+              <li><code>par_ville</code> : montants par ville.</li>
+            </ul>
+            <p>Le fichier peut être un JSON pur ou un <code>data.js</code> contenant <code>reportData</code>.</p>
+          </div>
+          <pre><code>{
+  "chiffre_affaires_total": 5268.78,
+  "par_produit": {
+    "Produit A": 1199.76
+  },
+  "par_ville": {
+    "Paris": 799.80
+  }
+}</code></pre>
+        </div>
+      </details>
+    </section>
+
+    <section class="insights" aria-label="Synthèse automatique">
+      <article class="insight">
+        <small>Poids du meilleur produit</small>
+        <strong id="insight-product-share"></strong>
+        <span id="insight-product-detail"></span>
+      </article>
+      <article class="insight">
+        <small>Poids de la meilleure ville</small>
+        <strong id="insight-city-share"></strong>
+        <span id="insight-city-detail"></span>
+      </article>
+      <article class="insight" id="insight-consistency-card">
+        <small>Cohérence des données</small>
+        <strong id="insight-consistency"></strong>
+        <span id="insight-consistency-detail"></span>
+      </article>
     </section>
 
     <section class="grid">
       <div class="card">
-        <h2>Chiffre d'affaires par produit</h2>
+        <div class="card-heading">
+          <h2>Chiffre d'affaires par produit</h2>
+          <label class="chart-limit">
+            <span>Affichage</span>
+            <select id="product-limit">
+              <option value="10">Top 10</option>
+              <option value="20">Top 20</option>
+              <option value="all">Tout</option>
+            </select>
+          </label>
+        </div>
+        <p id="product-chart-meta" class="chart-meta"></p>
         <div class="chart-box">
-          <canvas id="productChart"></canvas>
+          <div id="productChartFrame" class="chart-frame">
+            <canvas id="productChart"></canvas>
+          </div>
         </div>
         <div class="ranking" id="ranking"></div>
       </div>
 
       <div class="card">
-        <h2>Chiffre d'affaires par ville</h2>
+        <div class="card-heading">
+          <h2>Chiffre d'affaires par ville</h2>
+          <label class="chart-limit">
+            <span>Affichage</span>
+            <select id="city-limit">
+              <option value="10">Top 10</option>
+              <option value="20">Top 20</option>
+              <option value="all">Tout</option>
+            </select>
+          </label>
+        </div>
+        <p id="city-chart-meta" class="chart-meta"></p>
         <div class="chart-box">
-          <canvas id="cityChart"></canvas>
+          <div id="cityChartFrame" class="chart-frame">
+            <canvas id="cityChart"></canvas>
+          </div>
         </div>
       </div>
     </section>
@@ -64,11 +146,56 @@
       </div>
     </section>
 
+    <section class="detail-panel" aria-labelledby="detail-title">
+      <div class="detail-header">
+        <div>
+          <h2 id="detail-title">Détail des données</h2>
+          <p id="detail-meta"></p>
+        </div>
+        <div class="detail-tools">
+          <div class="detail-switch" role="group" aria-label="Type de données">
+            <button type="button" class="segment active" data-detail-type="products">Produits</button>
+            <button type="button" class="segment" data-detail-type="cities">Villes</button>
+          </div>
+          <label class="detail-field">
+            <span>Recherche</span>
+            <input id="detail-search" type="search" placeholder="Nom à filtrer" />
+          </label>
+          <label class="detail-field">
+            <span>Tri</span>
+            <select id="detail-sort">
+              <option value="ca-desc">CA décroissant</option>
+              <option value="ca-asc">CA croissant</option>
+              <option value="name-asc">Nom A-Z</option>
+              <option value="name-desc">Nom Z-A</option>
+              <option value="share-desc">Part décroissante</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Rang</th>
+              <th scope="col" id="detail-name-heading">Produit</th>
+              <th scope="col">Chiffre d'affaires</th>
+              <th scope="col">Part du total</th>
+            </tr>
+          </thead>
+          <tbody id="detail-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
     <footer>Toutes les valeurs sont exprimées en euros (€)</footer>
   </main>
 
   <script src="js/kpis.js"></script>
   <script src="js/charts.js"></script>
+  <script src="js/insights.js"></script>
+  <script src="js/table.js"></script>
   <script src="js/app.js"></script>
 
 </body>
